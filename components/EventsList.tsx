@@ -164,7 +164,7 @@ export default function EventsList({ events, maxItems = 20 }: EventsListProps) {
                     size="sm"
                     className="text-xs"
                   >
-                    Plus d'infos →
+                    Plus d&apos;infos →
                   </Link>
                 )}
               </div>
