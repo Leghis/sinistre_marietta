@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTheme } from 'next-themes';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -23,6 +24,17 @@ interface DisasterChartProps {
 }
 
 export default function DisasterChart({ events }: DisasterChartProps) {
+  const { theme, systemTheme } = useTheme();
+
+  // Déterminer le thème actuel
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const isDark = currentTheme === 'dark';
+
+  // Couleurs de texte adaptées au thème
+  const textColor = isDark ? '#e8eaf6' : '#1a237e';
+  const tooltipBg = isDark ? 'rgba(26, 35, 126, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+  const tooltipBorder = isDark ? '#7c4dff' : '#5c6bc0';
+
   // Calculer les statistiques
   const stats: DisasterStatistics = events.reduce(
     (acc, event) => {
@@ -107,7 +119,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
       legend: {
         position: 'bottom' as const,
         labels: {
-          color: '#e8eaf6',
+          color: textColor,
           padding: 10,
           font: {
             size: 11,
@@ -117,10 +129,10 @@ export default function DisasterChart({ events }: DisasterChartProps) {
         },
       },
       tooltip: {
-        backgroundColor: 'rgba(26, 35, 126, 0.95)',
-        titleColor: '#e8eaf6',
-        bodyColor: '#e8eaf6',
-        borderColor: '#7c4dff',
+        backgroundColor: tooltipBg,
+        titleColor: textColor,
+        bodyColor: textColor,
+        borderColor: tooltipBorder,
         borderWidth: 1,
         padding: 12,
         displayColors: true,
