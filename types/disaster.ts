@@ -35,6 +35,7 @@ export interface DisasterStatistics {
   volcano: number;
   drought: number;
   storm: number;
+  other: number;
   total: number;
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTheme } from 'next-themes';
 import {
   Chart as ChartJS,
@@ -51,6 +51,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
       volcano: 0,
       drought: 0,
       storm: 0,
+      other: 0,
       total: 0,
     } as DisasterStatistics
   );
@@ -64,6 +65,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
     volcano: '#ab47bc',
     drought: '#fdd835',
     storm: '#42a5f5',
+    other: '#9e9e9e',
   };
 
   // Préparer les données pour le graphique
@@ -76,6 +78,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
       'Volcans',
       'Sécheresses',
       'Tempêtes',
+      'Autres',
     ],
     datasets: [
       {
@@ -88,6 +91,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
           stats.volcano,
           stats.drought,
           stats.storm,
+          stats.other,
         ],
         backgroundColor: [
           colors.earthquake,
@@ -97,6 +101,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
           colors.volcano,
           colors.drought,
           colors.storm,
+          colors.other,
         ],
         borderColor: [
           colors.earthquake,
@@ -106,6 +111,7 @@ export default function DisasterChart({ events }: DisasterChartProps) {
           colors.volcano,
           colors.drought,
           colors.storm,
+          colors.other,
         ],
         borderWidth: 2,
       },

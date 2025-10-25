@@ -82,7 +82,7 @@ export default function FilterPanel({
             className="w-full"
           >
             {severityLevels.map((level) => (
-              <SelectItem key={level.value} value={level.value}>
+              <SelectItem key={level.value}>
                 {level.label}
               </SelectItem>
             ))}
